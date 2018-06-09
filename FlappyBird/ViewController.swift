@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // SKViewに型を変換する
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         // ビューにシーンを表示する
         skView.presentScene(scene)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
             return true
         }
     }
-
-
+    
+    
 }
 
