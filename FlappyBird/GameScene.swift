@@ -289,10 +289,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate{
         let heartTexture = SKTexture(imageNamed: "heart")
         heartTexture.filteringMode = .linear
         
-        //壁の画像を読み込む
-        //let wallTexture = SKTexture(imageNamed: "wall")
-        //wallTexture.filteringMode = .linear
-        
         // 移動する距離を計算
         let movingDistance = CGFloat(self.frame.size.width + heartTexture.size().width)
         
@@ -414,20 +410,16 @@ class GameScene: SKScene,SKPhysicsContactDelegate{
         let item1 = contact.bodyA.node
         let item2 = contact.bodyB.node
         
-        //衝突確認
-        print("bodyA :\(item1!)")
-        print("bodyB :\(item2!)")
-        
         // ゲームオーバーのときは何もしない
         if scrollNode.speed <= 0 {
             return
         }
         //鳥とアイテムの衝突検知
         if (contact.bodyA.categoryBitMask & heartCategory) == heartCategory || (contact.bodyB.categoryBitMask & heartCategory) == heartCategory {
-            print("衝突")
-            print("itemScoreUp")
+            //アイテムスコアを1プラスする
             itemScore += 1
             itemSoreLabelNode.text = "Item Score:\(itemScore)"
+            
             //効果音を鳴らす
             self.run(get)
             
@@ -441,8 +433,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate{
             }
             
         }else if (contact.bodyA.categoryBitMask & scoreCategory) == scoreCategory || (contact.bodyB.categoryBitMask & scoreCategory) == scoreCategory {
-            // スコア物体と衝突した
-            print("ScoreUp")
+            // スコア物体と衝突したらスコアをプラス１する
             score += 1
             scoreLabelNode.text = "Score:\(score)"
             
@@ -456,7 +447,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate{
             }
         } else {
             // 壁か地面と衝突した
-            print("GameOver")
             //効果音を設定
             self.run(damage)
             // スクロールを停止させる
